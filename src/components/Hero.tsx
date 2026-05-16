@@ -3,20 +3,20 @@ import WaitlistForm from "@/components/WaitlistForm";
 export default function Hero() {
   return (
     <section
-      className="relative overflow-hidden pt-24 pb-20 md:pt-32 md:pb-28"
+      className="relative pt-24 pb-20 md:pt-32 md:pb-28"
       style={{ backgroundColor: "#F9F8FF" }}
     >
-      {/* Background decorations */}
-      <div
-        className="pointer-events-none absolute -top-40 -right-40 h-96 w-96 rounded-full opacity-20 blur-3xl"
-        style={{ backgroundColor: "#6C47FF" }}
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute bottom-0 -left-20 h-64 w-64 rounded-full opacity-10 blur-3xl"
-        style={{ backgroundColor: "#A87FFF" }}
-        aria-hidden="true"
-      />
+      {/* Background decorations — clipped inside their own wrapper so the phone mockup is never cut off */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div
+          className="absolute -top-40 -right-40 h-96 w-96 rounded-full opacity-20 blur-3xl"
+          style={{ backgroundColor: "#6C47FF" }}
+        />
+        <div
+          className="absolute bottom-0 -left-20 h-64 w-64 rounded-full opacity-10 blur-3xl"
+          style={{ backgroundColor: "#A87FFF" }}
+        />
+      </div>
 
       <div className="relative mx-auto max-w-6xl px-6">
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
@@ -99,7 +99,7 @@ export default function Hero() {
 
 function PhoneMockup() {
   return (
-    <div className="relative">
+    <div className="relative drop-shadow-2xl">
       {/* Glow */}
       <div
         className="absolute inset-8 rounded-3xl blur-2xl opacity-30"
@@ -109,11 +109,12 @@ function PhoneMockup() {
 
       <svg
         width="300"
-        height="608"
-        viewBox="-2 -2 304 608"
+        height="616"
+        viewBox="-4 -4 308 616"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="relative drop-shadow-2xl"
+        overflow="visible"
+        className="relative"
         aria-label="Stashly app preview"
         role="img"
       >
@@ -256,7 +257,6 @@ function PhoneMockup() {
         <rect x="10" y="430" width="280" height="80" fill="url(#fade)" />
 
         {/* Bottom nav */}
-        <rect x="10" y="524" width="280" height="66" rx="0" fill="#FFFFFF" />
         <rect x="10" y="524" width="280" height="1" fill="#E8E5F5" />
         {/* Home */}
         <text x="38" y="549" fill="#6C47FF" fontSize="18" textAnchor="middle">🏠</text>
