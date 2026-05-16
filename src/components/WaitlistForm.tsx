@@ -73,42 +73,49 @@ export default function WaitlistForm({ size = "default" }: WaitlistFormProps) {
     );
   }
 
+  const height = isLarge ? "56px" : "48px";
+  const fontSize = isLarge ? "1rem" : "0.875rem";
+
   return (
     <div className="w-full">
+      {/* Single pill row — never stacks on mobile */}
       <form
         onSubmit={handleSubmit}
-        className={`flex w-full flex-col gap-3 sm:flex-row ${isLarge ? "sm:max-w-xl" : "sm:max-w-md"}`}
+        className={`flex w-full items-center overflow-hidden ${isLarge ? "max-w-xl" : "max-w-md"}`}
+        style={{
+          height,
+          borderRadius: "999px",
+          border: "1.5px solid #D8D0FF",
+          backgroundColor: "#FFFFFF",
+          boxShadow: "0 2px 12px 0 #6c47ff14",
+        }}
       >
         <input
           type="email"
           required
-          placeholder="Enter your email"
+          placeholder="Enter your email address"
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
             if (state !== "idle") setState("idle");
           }}
           disabled={state === "loading"}
-          className={`flex-1 rounded-xl border px-4 outline-none transition-all duration-150 placeholder:text-gray-400 disabled:opacity-60 ${isLarge ? "h-14 text-base" : "h-12 text-sm"}`}
-          style={{
-            borderColor: "#E8E5F5",
-            backgroundColor: "#FFFFFF",
-            color: "#0F0A1E",
-          }}
-          onFocus={(e) => {
-            e.currentTarget.style.borderColor = "#6C47FF";
-            e.currentTarget.style.boxShadow = "0 0 0 3px #6c47ff1a";
-          }}
-          onBlur={(e) => {
-            e.currentTarget.style.borderColor = "#E8E5F5";
-            e.currentTarget.style.boxShadow = "none";
-          }}
+          className="min-w-0 flex-1 bg-transparent px-5 outline-none disabled:opacity-60"
+          style={{ fontSize, color: "#0F0A1E" }}
         />
         <button
           type="submit"
           disabled={state === "loading"}
-          className={`shrink-0 cursor-pointer rounded-xl font-semibold text-white transition-all duration-150 disabled:opacity-70 ${isLarge ? "h-14 px-8 text-base" : "h-12 px-6 text-sm"}`}
-          style={{ backgroundColor: "#6C47FF" }}
+          className="shrink-0 cursor-pointer font-semibold text-white transition-all duration-150 disabled:opacity-70"
+          style={{
+            height: `calc(${height} - 6px)`,
+            paddingLeft: isLarge ? "1.75rem" : "1.25rem",
+            paddingRight: isLarge ? "1.75rem" : "1.25rem",
+            marginRight: "3px",
+            borderRadius: "999px",
+            backgroundColor: "#6C47FF",
+            fontSize,
+          }}
           onMouseEnter={(e) => {
             if (state !== "loading")
               e.currentTarget.style.backgroundColor = "#5C3AE8";
@@ -121,8 +128,8 @@ export default function WaitlistForm({ size = "default" }: WaitlistFormProps) {
             <span className="flex items-center gap-2">
               <svg
                 className="animate-spin"
-                width="16"
-                height="16"
+                width="15"
+                height="15"
                 viewBox="0 0 24 24"
                 fill="none"
                 aria-hidden="true"
@@ -141,22 +148,25 @@ export default function WaitlistForm({ size = "default" }: WaitlistFormProps) {
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
                 />
               </svg>
-              Joining...
+              <span className="hidden sm:inline">Joining...</span>
             </span>
           ) : (
-            "Join Waitlist"
+            <>
+              <span className="hidden sm:inline">Join Waitlist</span>
+              <span className="sm:hidden">Join</span>
+            </>
           )}
         </button>
       </form>
 
       {state === "duplicate" && (
-        <p className="mt-2 text-sm" style={{ color: "#6C47FF" }}>
+        <p className="mt-3 px-2 text-sm" style={{ color: "#6C47FF" }}>
           {"You're already on the waitlist. We'll be in touch soon!"}
         </p>
       )}
 
       {state === "error" && (
-        <p className="mt-2 text-sm text-red-500">
+        <p className="mt-3 px-2 text-sm text-red-500">
           Something went wrong. Please try again.
         </p>
       )}
