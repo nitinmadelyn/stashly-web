@@ -15,12 +15,15 @@ interface PublicLink {
   platform: string;
 }
 
+const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+
 interface CollectionRow {
   id: string;
   name: string;
   description: string | null;
   cover_emoji: string | null;
   public_slug: string;
+  public_shared_at: string | null;
 }
 
 // ─── Data fetching ────────────────────────────────────────────────────────────
@@ -30,12 +33,18 @@ async function getPublicCollection(
 ): Promise<{ collection: CollectionRow; links: PublicLink[] } | null> {
   const { data: collection, error: colErr } = await supabaseAdmin
     .from("collections")
-    .select("id, name, description, cover_emoji, public_slug")
+    .select("id, name, description, cover_emoji, public_slug, public_shared_at")
     .eq("public_slug", slug)
     .eq("is_public", true)
     .single();
 
   if (colErr || !collection) return null;
+
+  // Enforce 7-day expiry: treat the collection as gone if the share has expired.
+  if (collection.public_shared_at) {
+    const elapsed = Date.now() - new Date(collection.public_shared_at).getTime();
+    if (elapsed >= SEVEN_DAYS_MS) return null;
+  }
 
   const { data: linkRows, error: linksErr } = await supabaseAdmin
     .from("collection_links")
@@ -136,7 +145,7 @@ function LinkCard({ link }: { link: PublicLink }) {
       rel="noopener noreferrer"
       className="group flex flex-col bg-canvas rounded-xl border border-border overflow-hidden hover:shadow-md transition-shadow"
     >
-      {link.thumbnail_url && (
+      {link.thumbnail_url ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={link.thumbnail_url}
@@ -144,10 +153,29 @@ function LinkCard({ link }: { link: PublicLink }) {
           className="w-full aspect-video object-cover"
           loading="lazy"
         />
-      )}
+      ) : (
+        /* Branded placeholder — shown when the platform doesn't provide a preview image */
+        <div
+          className="relative w-full aspect-video flex flex-col items-center justify-center gap-2 select-none"
+          style={{ background: `linear-gradient(135deg, ${color}14 0%, ${color}28 100%)` }}
+        >
+          {/* Top accent line */}
+          <div className="absolute top-0 left-0 right-0 h-0.5" style={{ backgroundColor: color }} />
 
-      {!link.thumbnail_url && (
-        <div className="h-1 w-full" style={{ backgroundColor: color }} />
+          {/* Stashly logo mark */}
+          <span
+            className="text-2xl font-bold leading-none"
+            style={{ color }}
+            aria-hidden="true"
+          >
+            ✦
+          </span>
+
+          {/* "No preview" label */}
+          <p className="text-xs font-medium text-center px-4 leading-snug" style={{ color: `${color}BB` }}>
+            Preview not available on {label}
+          </p>
+        </div>
       )}
 
       <div className="p-4 flex flex-col gap-2">
