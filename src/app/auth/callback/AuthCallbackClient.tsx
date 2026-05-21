@@ -9,12 +9,16 @@ type Phase = "redirecting" | "waiting" | "error";
 
 function buildDeepLink(code: string | null, hash: string): string | null {
   if (code) {
+    // PKCE flow: forward the authorization code as a query param.
+    // iOS preserves query params when launching apps via custom URL schemes.
     return `stashly://?code=${encodeURIComponent(code)}`;
   }
-  // Fallback: implicit-flow tokens arrive in the URL fragment (client-side only).
-  // Supabase puts them as #access_token=...&refresh_token=...
+  // Implicit flow: Supabase puts tokens in the URL fragment on the client side
+  // (#access_token=xxx&refresh_token=xxx&token_type=bearer&...).
+  // iOS STRIPS URL fragments when opening apps via custom URL schemes, so we
+  // must convert the fragment to query params before redirecting to the app.
   if (hash) {
-    return `stashly://#${hash}`;
+    return `stashly://?${hash}`;
   }
   return null;
 }
