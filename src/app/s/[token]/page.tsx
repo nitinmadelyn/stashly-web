@@ -84,6 +84,39 @@ export async function generateMetadata({
   };
 }
 
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+function hexToRgba(hex: string, alpha: number): string {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+// ─── Shared logo ─────────────────────────────────────────────────────────────
+
+function StashlyLogo() {
+  return (
+    <span className="flex items-center gap-2 shrink-0">
+      <span
+        className="flex items-center justify-center h-8 w-8 rounded-lg"
+        style={{ backgroundColor: "#6C47FF" }}
+      >
+        <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path
+            d="M5 2h8a1 1 0 0 1 1 1v13l-5-3-5 3V3a1 1 0 0 1 1-1z"
+            fill="white"
+            stroke="white"
+            strokeWidth="0.5"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </span>
+      <span className="text-sm font-bold tracking-tight" style={{ color: "#0F0A1E" }}>Stashly</span>
+    </span>
+  );
+}
+
 // ─── Platform color map ───────────────────────────────────────────────────────
 
 const PLATFORM_COLOR: Record<string, string> = {
@@ -149,12 +182,32 @@ export default async function SharedLinkPage({
           />
         )}
 
-        {/* Accent bar (when no thumbnail) */}
+        {/* Branded placeholder (when no thumbnail) */}
         {!link.thumbnail_url && (
           <div
-            className="h-1 w-full"
-            style={{ backgroundColor: platformColor }}
-          />
+            className="relative w-full aspect-video flex flex-col items-center justify-center gap-3 select-none"
+            style={{ background: `linear-gradient(135deg, ${hexToRgba(platformColor, 0.07)} 0%, ${hexToRgba(platformColor, 0.14)} 100%)` }}
+          >
+            <div className="absolute top-0 left-0 right-0 h-0.5" style={{ backgroundColor: platformColor }} />
+            <span
+              className="flex items-center justify-center h-10 w-10 rounded-xl"
+              style={{ backgroundColor: hexToRgba(platformColor, 0.15) }}
+              aria-hidden="true"
+            >
+              <svg width="20" height="20" viewBox="0 0 18 18" fill="none">
+                <path
+                  d="M5 2h8a1 1 0 0 1 1 1v13l-5-3-5 3V3a1 1 0 0 1 1-1z"
+                  fill={platformColor}
+                  stroke={platformColor}
+                  strokeWidth="0.5"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+            <p className="text-xs font-medium text-center px-6 leading-snug" style={{ color: hexToRgba(platformColor, 0.75) }}>
+              Preview not available on {platformLabel}
+            </p>
+          </div>
         )}
 
         {/* Body */}
@@ -223,11 +276,8 @@ export default async function SharedLinkPage({
       {/* Stashly attribution */}
       <div className="mt-8 flex flex-col items-center gap-2">
         <p className="text-xs text-ink-faint">Shared via</p>
-        <Link
-          href="/"
-          className="flex items-center gap-1.5 font-bold text-primary text-sm hover:opacity-80 transition-opacity"
-        >
-          ✦ Stashly
+        <Link href="/" className="hover:opacity-80 transition-opacity">
+          <StashlyLogo />
         </Link>
         <p className="text-xs text-ink-faint text-center max-w-xs">
           Save, search &amp; share your favourite links — all in one place.

@@ -104,6 +104,42 @@ export async function generateMetadata({
   };
 }
 
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+function hexToRgba(hex: string, alpha: number): string {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+// ─── Shared logo markup ───────────────────────────────────────────────────────
+
+function StashlyLogo({ size = "sm" }: { size?: "sm" | "base" }) {
+  const iconSize  = size === "base" ? 20 : 16;
+  const boxClass  = size === "base" ? "h-9 w-9 rounded-lg" : "h-7 w-7 rounded-md";
+  const textClass = size === "base" ? "text-base font-bold tracking-tight" : "text-sm font-bold tracking-tight";
+  return (
+    <span className="flex items-center gap-2 shrink-0">
+      <span
+        className={`flex items-center justify-center ${boxClass}`}
+        style={{ backgroundColor: "#6C47FF" }}
+      >
+        <svg width={iconSize} height={iconSize} viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path
+            d="M5 2h8a1 1 0 0 1 1 1v13l-5-3-5 3V3a1 1 0 0 1 1-1z"
+            fill="white"
+            stroke="white"
+            strokeWidth="0.5"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </span>
+      <span className={textClass} style={{ color: "#0F0A1E" }}>Stashly</span>
+    </span>
+  );
+}
+
 // ─── Platform color map ───────────────────────────────────────────────────────
 
 const PLATFORM_COLOR: Record<string, string> = {
@@ -156,23 +192,31 @@ function LinkCard({ link }: { link: PublicLink }) {
       ) : (
         /* Branded placeholder — shown when the platform doesn't provide a preview image */
         <div
-          className="relative w-full aspect-video flex flex-col items-center justify-center gap-2 select-none"
-          style={{ background: `linear-gradient(135deg, ${color}14 0%, ${color}28 100%)` }}
+          className="relative w-full aspect-video flex flex-col items-center justify-center gap-3 select-none"
+          style={{ background: `linear-gradient(135deg, ${hexToRgba(color, 0.07)} 0%, ${hexToRgba(color, 0.14)} 100%)` }}
         >
           {/* Top accent line */}
           <div className="absolute top-0 left-0 right-0 h-0.5" style={{ backgroundColor: color }} />
 
-          {/* Stashly logo mark */}
+          {/* Stashly bookmark logo */}
           <span
-            className="text-2xl font-bold leading-none"
-            style={{ color }}
+            className="flex items-center justify-center h-10 w-10 rounded-xl"
+            style={{ backgroundColor: hexToRgba(color, 0.15) }}
             aria-hidden="true"
           >
-            ✦
+            <svg width="20" height="20" viewBox="0 0 18 18" fill="none">
+              <path
+                d="M5 2h8a1 1 0 0 1 1 1v13l-5-3-5 3V3a1 1 0 0 1 1-1z"
+                fill={color}
+                stroke={color}
+                strokeWidth="0.5"
+                strokeLinejoin="round"
+              />
+            </svg>
           </span>
 
           {/* "No preview" label */}
-          <p className="text-xs font-medium text-center px-4 leading-snug" style={{ color: `${color}BB` }}>
+          <p className="text-xs font-medium text-center px-6 leading-snug" style={{ color: hexToRgba(color, 0.75) }}>
             Preview not available on {label}
           </p>
         </div>
@@ -224,11 +268,8 @@ export default async function PublicCollectionPage({
       {/* Header */}
       <header className="sticky top-0 z-10 bg-canvas border-b border-border backdrop-blur-sm">
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
-          <Link
-            href="/"
-            className="font-bold text-primary text-sm flex items-center gap-1 shrink-0 hover:opacity-80 transition-opacity"
-          >
-            ✦ Stashly
+          <Link href="/" className="shrink-0 hover:opacity-80 transition-opacity">
+            <StashlyLogo size="sm" />
           </Link>
           <a
             href={importDeepLink}
@@ -280,11 +321,8 @@ export default async function PublicCollectionPage({
       {/* Footer CTA */}
       <footer className="border-t border-border py-10 bg-canvas">
         <div className="max-w-3xl mx-auto px-4 flex flex-col items-center gap-3 text-center">
-          <Link
-            href="/"
-            className="font-bold text-primary text-base flex items-center gap-1.5 hover:opacity-80 transition-opacity"
-          >
-            ✦ Stashly
+          <Link href="/" className="hover:opacity-80 transition-opacity">
+            <StashlyLogo size="base" />
           </Link>
           <p className="text-sm text-ink-muted max-w-sm">
             Save, search &amp; share your favourite links — all in one place.
