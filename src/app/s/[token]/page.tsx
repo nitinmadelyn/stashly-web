@@ -333,15 +333,84 @@ export default async function SharedLinkPage({
         <time dateTime={row.expires_at}>{expiresLabel}</time>
       </p>
 
-      {/* Stashly attribution */}
-      <div className="mt-8 flex flex-col items-center gap-2">
-        <p className="text-xs text-ink-faint">Shared via</p>
-        <Link href="/" className="hover:opacity-80 transition-opacity">
-          <StashlyLogo />
-        </Link>
-        <p className="text-xs text-ink-faint text-center max-w-xs">
-          Save, search &amp; share your favourite links — all in one place.
-        </p>
+      {/* Download CTA banner */}
+      <div className="w-full max-w-lg mt-6">
+        <div
+          className="rounded-2xl overflow-hidden border"
+          style={{ borderColor: hexToRgba("#6C47FF", 0.2), backgroundColor: hexToRgba("#6C47FF", 0.04) }}
+        >
+          {/* Top accent bar */}
+          <div className="h-0.5 w-full" style={{ backgroundColor: "#6C47FF" }} />
+
+          <div className="px-6 py-6 flex flex-col items-center gap-4 text-center">
+            {/* Icon + wordmark */}
+            <Link href="/" className="hover:opacity-80 transition-opacity">
+              <StashlyLogo />
+            </Link>
+
+            {/* Headline */}
+            <div className="flex flex-col gap-1.5">
+              <p className="text-base font-bold" style={{ color: "#0F0A1E" }}>
+                Organise all your social links in one place
+              </p>
+              <p className="text-sm leading-relaxed" style={{ color: "#6B7280" }}>
+                Save links from YouTube, Instagram, X, Reddit and more. Search instantly, share in one tap.
+              </p>
+            </div>
+
+            {/* Platform pill strip */}
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              {(
+                [
+                  ["youtube",   "#FF0000", "YouTube"],
+                  ["instagram", "#E1306C", "Instagram"],
+                  ["twitter",   "#1DA1F2", "X"],
+                  ["tiktok",    "#FE2C55", "TikTok"],
+                  ["reddit",    "#FF4500", "Reddit"],
+                  ["linkedin",  "#0077B5", "LinkedIn"],
+                ] as [string, string, string][]
+              ).map(([platform, color, label]) => (
+                <span
+                  key={platform}
+                  className="inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full"
+                  style={{ color, backgroundColor: hexToRgba(color, 0.1) }}
+                >
+                  {PLATFORM_ICON[platform]}
+                  {label}
+                </span>
+              ))}
+              <span
+                className="inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full"
+                style={{ color: "#6C47FF", backgroundColor: hexToRgba("#6C47FF", 0.1) }}
+              >
+                + more
+              </span>
+            </div>
+
+            {/* CTA button */}
+            <Link
+              href="/#waitlist"
+              className="mt-1 inline-flex items-center justify-center gap-2 h-12 px-8 rounded-xl font-semibold text-sm text-white w-full transition-opacity hover:opacity-90 active:opacity-80"
+              style={{ backgroundColor: "#6C47FF" }}
+            >
+              {/* Bookmark icon */}
+              <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path
+                  d="M5 2h8a1 1 0 0 1 1 1v13l-5-3-5 3V3a1 1 0 0 1 1-1z"
+                  fill="white"
+                  stroke="white"
+                  strokeWidth="0.5"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              Download Stashly — it&apos;s free
+            </Link>
+
+            <p className="text-xs" style={{ color: "#9CA3AF" }}>
+              iOS &amp; Android &nbsp;·&nbsp; Free to get started
+            </p>
+          </div>
+        </div>
       </div>
     </main>
   );
