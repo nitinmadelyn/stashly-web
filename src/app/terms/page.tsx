@@ -136,7 +136,7 @@ export default function TermsPage() {
                     <div className="flex justify-between">
                       <span>Pro Monthly</span>
                       <span className="font-medium" style={{ color: "#0F0A1E" }}>
-                        ₹49 / month &nbsp;·&nbsp; $0.99 / month
+                        ₹49 / month &nbsp;·&nbsp; $1.99 / month
                       </span>
                     </div>
                     <div
@@ -145,7 +145,7 @@ export default function TermsPage() {
                     >
                       <span>Pro Annual</span>
                       <span className="font-medium" style={{ color: "#0F0A1E" }}>
-                        ₹499 / year &nbsp;·&nbsp; $4.99 / year
+                        ₹499 / year &nbsp;·&nbsp; $19.99 / year
                       </span>
                     </div>
                   </div>
