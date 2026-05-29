@@ -11,7 +11,7 @@
  *
  * Environment variables required:
  *   SUPABASE_URL          — https://<project>.supabase.co
- *   SUPABASE_SERVICE_KEY  — service_role key (bypasses RLS for admin reads)
+ *   SUPABASE_SERVICE_ROLE_KEY  — service_role key (bypasses RLS for admin reads)
  *   CRON_SECRET           — shared secret that protects this endpoint
  *
  * Expo Push API docs: https://docs.expo.dev/push-notifications/sending-notifications/
@@ -22,7 +22,7 @@ import { NextRequest, NextResponse } from 'next/server';
 // ─── Config ───────────────────────────────────────────────────────────────────
 
 const SUPABASE_URL         = process.env.SUPABASE_URL!;
-const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY!;
+const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 const CRON_SECRET          = process.env.CRON_SECRET!;
 
 /** Expo push API batch limit. */
