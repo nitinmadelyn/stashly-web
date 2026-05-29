@@ -63,7 +63,6 @@ async function supabaseAdmin<T>(path: string): Promise<T> {
 }
 
 // ─── Helper: count links saved last week for a user ──────────────────────────
-
 async function countLinksLastWeek(userId: string): Promise<number> {
   // Last week = previous Mon 00:00:00 UTC  →  this Mon 00:00:00 UTC
   const now  = new Date();
