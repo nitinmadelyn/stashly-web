@@ -5,7 +5,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="py-10"
+      className="py-12"
       style={{
         backgroundColor: '#0A0515',
         borderTop: '1px solid #1A1030',

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import WaitlistForm from "@/components/WaitlistForm";
+import AppStoreBadges from "@/components/AppStoreBadges";
 
 export default function Hero() {
   return (
@@ -7,7 +7,7 @@ export default function Hero() {
       className="relative pt-24 pb-20 md:pt-32 md:pb-28"
       style={{ backgroundColor: "#F9F8FF" }}
     >
-      {/* Background decorations — clipped inside their own wrapper so the phone mockup is never cut off */}
+      {/* Background decorations */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
         <div
           className="absolute -top-40 -right-40 h-96 w-96 rounded-full opacity-20 blur-3xl"
@@ -35,7 +35,7 @@ export default function Hero() {
                 className="h-1.5 w-1.5 rounded-full"
                 style={{ backgroundColor: "#6C47FF" }}
               />
-              Coming Soon
+              Available Now
             </div>
 
             <h1
@@ -55,11 +55,11 @@ export default function Hero() {
               any device.
             </p>
 
-            {/* Waitlist form */}
-            <div id="waitlist" className="mt-8 w-full">
-              <WaitlistForm />
+            {/* App store badges */}
+            <div className="mt-8">
+              <AppStoreBadges size="lg" />
               <p className="mt-3 text-xs" style={{ color: "#9CA3AF" }}>
-                Free forever. No spam. Get notified at launch.
+                Free to download. Available on iOS and Android.
               </p>
             </div>
 
@@ -142,7 +142,7 @@ function PhoneMockup() {
             priority
           />
 
-          {/* Subtle bottom fade so the phone shell blends cleanly */}
+          {/* Subtle bottom fade */}
           <div
             className="pointer-events-none absolute bottom-0 left-0 right-0 h-16"
             style={{

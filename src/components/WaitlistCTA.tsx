@@ -1,6 +1,6 @@
-import WaitlistForm from "@/components/WaitlistForm";
+import AppStoreBadges from "@/components/AppStoreBadges";
 
-export default function WaitlistCTA() {
+export default function DownloadCTA() {
   return (
     <section
       className="relative overflow-hidden py-24 md:py-32"
@@ -23,31 +23,31 @@ export default function WaitlistCTA() {
             className="h-1.5 w-1.5 rounded-full"
             style={{ backgroundColor: "#A87FFF" }}
           />
-          Early access
+          Free to download
         </div>
 
         <h2
           className="text-balance text-3xl font-bold leading-tight tracking-tight md:text-4xl"
           style={{ color: "#FFFFFF" }}
         >
-          Be the first to use Stashly
+          Start saving smarter today
         </h2>
 
         <p
           className="mt-5 text-pretty text-base leading-relaxed"
           style={{ color: "#9CA3AF" }}
         >
-          Join the waitlist and get notified the moment we launch. Early users
-          will get extended free access and a direct line to shape the product.
+          Download Stashly and bring your scattered links, saved posts, and
+          browser bookmarks into one searchable home.
         </p>
 
-        {/* Form — centered */}
+        {/* Store badges — centered */}
         <div className="mt-8 flex justify-center">
-          <WaitlistForm size="large" />
+          <AppStoreBadges size="lg" />
         </div>
 
         <p className="mt-4 text-xs" style={{ color: "#4B5563" }}>
-          Free forever to start. No spam, ever. Unsubscribe any time.
+          Available on iOS and Android. Free forever to start.
         </p>
 
         {/* Three value props */}
