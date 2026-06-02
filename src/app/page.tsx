@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import Platforms from "@/components/Platforms";
+import UseCases from "@/components/UseCases";
 import WaitlistCTA from "@/components/WaitlistCTA";
 import Footer from "@/components/Footer";
 
@@ -13,6 +14,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Platforms />
+        <UseCases />
         <Features />
         <HowItWorks />
         <WaitlistCTA />
