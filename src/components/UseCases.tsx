@@ -1075,18 +1075,38 @@ function StepsModal({
             borderTop: "1px solid #F3F4F6",
           }}
         >
-          <a
-            href="https://apps.apple.com/us/app/stashly-save-search-share/id6771729320"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 h-12 w-full rounded-xl font-semibold text-sm text-white transition-opacity hover:opacity-90 active:opacity-80"
-            style={{ backgroundColor: "#6C47FF" }}
-          >
-            Download Stashly — it&apos;s free
-          </a>
-          <p className="mt-2 text-center text-xs" style={{ color: "#9CA3AF" }}>
-            iOS &amp; Android · Free to get started
+          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-widest" style={{ color: "#9CA3AF" }}>
+            Download Stashly — free
           </p>
+          <div className="flex gap-3 justify-center">
+            <a
+              href="https://apps.apple.com/us/app/stashly-save-search-share/id6771729320"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-1 items-center justify-center gap-2 h-12 rounded-xl font-semibold text-sm text-white transition-opacity hover:opacity-90 active:opacity-80"
+              style={{ backgroundColor: "#000000" }}
+            >
+              <svg width="16" height="20" viewBox="0 0 20 24" fill="none" aria-hidden="true">
+                <path d="M16.457 12.748c-.025-2.73 2.23-4.052 2.332-4.117-1.272-1.86-3.253-2.115-3.95-2.14-1.672-.17-3.285.99-4.135.99-.865 0-2.176-.97-3.585-.944-1.83.027-3.534 1.072-4.474 2.703-1.93 3.337-.492 8.257 1.368 10.954.93 1.32 2.02 2.795 3.457 2.742 1.397-.056 1.92-.891 3.607-.891 1.672 0 2.163.891 3.624.859 1.5-.027 2.443-1.338 3.36-2.666a12.26 12.26 0 0 0 1.528-3.086c-.033-.014-2.926-1.12-2.955-4.404ZM13.76 4.279C14.52 3.35 15.04 2.07 14.894.73c-1.113.047-2.46.74-3.257 1.67-.713.82-1.34 2.136-1.172 3.397 1.243.097 2.514-.633 3.296-1.518Z" fill="white" />
+              </svg>
+              App Store
+            </a>
+            <a
+              href="https://play.google.com/store/apps/details?id=pro.stashly.mobile"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-1 items-center justify-center gap-2 h-12 rounded-xl font-semibold text-sm text-white transition-opacity hover:opacity-90 active:opacity-80"
+              style={{ backgroundColor: "#000000" }}
+            >
+              <svg width="16" height="18" viewBox="0 0 22 24" fill="none" aria-hidden="true">
+                <path d="M1.5 1.15 13.4 12 1.5 22.85A1.5 1.5 0 0 1 .5 21.5v-19A1.5 1.5 0 0 1 1.5 1.15Z" fill="#EA4335" />
+                <path d="M21.06 10.32 17.5 8.27 13.4 12l4.1 3.73 3.56-2.05a1.5 1.5 0 0 0 0-3.36Z" fill="#FBBC04" />
+                <path d="M1.5 1.15 13.4 12 17.5 8.27 4.77.42A1.5 1.5 0 0 0 1.5 1.15Z" fill="#4285F4" />
+                <path d="M1.5 22.85 13.4 12l4.1 3.73-12.73 7.85a1.5 1.5 0 0 1-3.27-.73Z" fill="#34A853" />
+              </svg>
+              Google Play
+            </a>
+          </div>
         </div>
       </div>
     </div>
