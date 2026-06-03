@@ -4,6 +4,7 @@ import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import Platforms from "@/components/Platforms";
 import UseCases from "@/components/UseCases";
+import FeatureShowcase from "@/components/FeatureShowcase";
 import WaitlistCTA from "@/components/WaitlistCTA";
 import Footer from "@/components/Footer";
 
@@ -15,6 +16,7 @@ export default function Home() {
         <Hero />
         <Platforms />
         <UseCases />
+        <FeatureShowcase />
         <Features />
         <HowItWorks />
         <WaitlistCTA />
