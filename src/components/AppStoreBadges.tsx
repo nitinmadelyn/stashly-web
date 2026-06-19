@@ -1,42 +1,36 @@
-'use client';
-
 const APPLE_URL =
   'https://apps.apple.com/us/app/stashly-save-search-share/id6771729320';
 const ANDROID_URL =
   'https://play.google.com/store/apps/details?id=pro.stashly.mobile';
 
 interface AppStoreBadgesProps {
-  /** Layout direction. Defaults to 'row'. */
   direction?: 'row' | 'column';
-  /** Badge size preset. Defaults to 'md'. */
   size?: 'sm' | 'md' | 'lg';
 }
 
 const SIZE_MAP = {
-  sm: { height: 36, minWidth: 118 },
-  md: { height: 44, minWidth: 144 },
-  lg: { height: 52, minWidth: 168 },
+  sm: { height: 36, minWidth: 118, pad: 14, iconSize: 16, iconH: 19, labelSize: 8, nameSize: 13 },
+  md: { height: 44, minWidth: 144, pad: 18, iconSize: 20, iconH: 24, labelSize: 10, nameSize: 16 },
+  lg: { height: 52, minWidth: 168, pad: 18, iconSize: 20, iconH: 24, labelSize: 10, nameSize: 16 },
 };
 
 export default function AppStoreBadges({
   direction = 'row',
   size = 'md',
 }: AppStoreBadgesProps) {
-  const { height, minWidth } = SIZE_MAP[size];
+  const s = SIZE_MAP[size];
 
-  const badgeBase: React.CSSProperties = {
+  const badgeStyle: React.CSSProperties = {
     display: 'inline-flex',
     alignItems: 'center',
     gap: 10,
-    height,
-    minWidth,
-    paddingInline: size === 'sm' ? 14 : 18,
+    height: s.height,
+    minWidth: s.minWidth,
+    paddingInline: s.pad,
     borderRadius: 10,
     backgroundColor: '#000000',
     border: '1px solid rgba(255,255,255,0.12)',
     textDecoration: 'none',
-    cursor: 'pointer',
-    transition: 'opacity 0.15s ease, transform 0.15s ease',
     flexShrink: 0,
   };
 
@@ -56,20 +50,12 @@ export default function AppStoreBadges({
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Download on the App Store"
-        style={badgeBase}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.opacity = '0.85';
-          e.currentTarget.style.transform = 'translateY(-1px)';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.opacity = '1';
-          e.currentTarget.style.transform = 'translateY(0)';
-        }}
+        className="store-badge"
+        style={badgeStyle}
       >
-        {/* Apple logo SVG */}
         <svg
-          width={size === 'sm' ? 16 : 20}
-          height={size === 'sm' ? 19 : 24}
+          width={s.iconSize}
+          height={s.iconH}
           viewBox="0 0 20 24"
           fill="none"
           aria-hidden="true"
@@ -79,27 +65,11 @@ export default function AppStoreBadges({
             fill="white"
           />
         </svg>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-          <span
-            style={{
-              color: 'rgba(255,255,255,0.75)',
-              fontSize: size === 'sm' ? 8 : 10,
-              fontWeight: 400,
-              lineHeight: 1.2,
-              letterSpacing: '0.02em',
-            }}
-          >
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <span style={{ color: 'rgba(255,255,255,0.75)', fontSize: s.labelSize, fontWeight: 400, lineHeight: 1.2, letterSpacing: '0.02em' }}>
             Download on the
           </span>
-          <span
-            style={{
-              color: '#FFFFFF',
-              fontSize: size === 'sm' ? 13 : 16,
-              fontWeight: 600,
-              lineHeight: 1.2,
-              letterSpacing: '-0.01em',
-            }}
-          >
+          <span style={{ color: '#FFFFFF', fontSize: s.nameSize, fontWeight: 600, lineHeight: 1.2, letterSpacing: '-0.01em' }}>
             App Store
           </span>
         </div>
@@ -111,20 +81,12 @@ export default function AppStoreBadges({
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Get it on Google Play"
-        style={badgeBase}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.opacity = '0.85';
-          e.currentTarget.style.transform = 'translateY(-1px)';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.opacity = '1';
-          e.currentTarget.style.transform = 'translateY(0)';
-        }}
+        className="store-badge"
+        style={badgeStyle}
       >
-        {/* Google Play triangle icon (simplified) */}
         <svg
-          width={size === 'sm' ? 16 : 20}
-          height={size === 'sm' ? 17 : 22}
+          width={s.iconSize}
+          height={s.iconH}
           viewBox="0 0 22 24"
           fill="none"
           aria-hidden="true"
@@ -134,27 +96,11 @@ export default function AppStoreBadges({
           <path d="M1.5 1.15 13.4 12 17.5 8.27 4.77.42A1.5 1.5 0 0 0 1.5 1.15Z" fill="#4285F4" />
           <path d="M1.5 22.85 13.4 12l4.1 3.73-12.73 7.85a1.5 1.5 0 0 1-3.27-.73Z" fill="#34A853" />
         </svg>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-          <span
-            style={{
-              color: 'rgba(255,255,255,0.75)',
-              fontSize: size === 'sm' ? 8 : 10,
-              fontWeight: 400,
-              lineHeight: 1.2,
-              letterSpacing: '0.02em',
-            }}
-          >
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <span style={{ color: 'rgba(255,255,255,0.75)', fontSize: s.labelSize, fontWeight: 400, lineHeight: 1.2, letterSpacing: '0.02em' }}>
             Get it on
           </span>
-          <span
-            style={{
-              color: '#FFFFFF',
-              fontSize: size === 'sm' ? 13 : 16,
-              fontWeight: 600,
-              lineHeight: 1.2,
-              letterSpacing: '-0.01em',
-            }}
-          >
+          <span style={{ color: '#FFFFFF', fontSize: s.nameSize, fontWeight: 600, lineHeight: 1.2, letterSpacing: '-0.01em' }}>
             Google Play
           </span>
         </div>

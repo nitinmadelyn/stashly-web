@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 const APPLE_URL =
@@ -9,6 +10,10 @@ const ANDROID_URL =
   'https://play.google.com/store/apps/details?id=pro.stashly.mobile';
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+  const navHref = (hash: string) => (isHome ? hash : `/${hash}`);
+
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -74,7 +79,7 @@ export default function Navbar() {
         {/* Nav links — hidden on mobile */}
         <div className="hidden items-center gap-8 md:flex">
           <a
-            href="#features"
+            href={navHref('#features')}
             className="text-sm font-medium transition-colors duration-150"
             style={{ color: '#4B5563' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = '#6C47FF')}
@@ -83,7 +88,7 @@ export default function Navbar() {
             Features
           </a>
           <a
-            href="#how-it-works"
+            href={navHref('#how-it-works')}
             className="text-sm font-medium transition-colors duration-150"
             style={{ color: '#4B5563' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = '#6C47FF')}
@@ -91,6 +96,15 @@ export default function Navbar() {
           >
             How it works
           </a>
+          <Link
+            href="/blog"
+            className="text-sm font-medium transition-colors duration-150"
+            style={{ color: pathname === '/blog' ? '#6C47FF' : '#4B5563' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#6C47FF')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = pathname === '/blog' ? '#6C47FF' : '#4B5563')}
+          >
+            Blog
+          </Link>
         </div>
 
         {/* Download CTA with dropdown */}

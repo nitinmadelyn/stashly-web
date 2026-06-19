@@ -47,4 +47,33 @@ body {
   .text-pretty {
     text-wrap: pretty;
   }
+
+  /* Store badge hover — replaces JS onMouseEnter/Leave in AppStoreBadges */
+  .store-badge {
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+  .store-badge:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+  }
+
+  /* Footer nav link hover */
+  .footer-link {
+    transition: color 0.15s ease;
+  }
+  .footer-link:hover {
+    color: #ffffff;
+  }
+
+  /* Blog post card hover */
+  .blog-card {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .blog-card:hover {
+    border-color: #6C47FF;
+    box-shadow: 0 4px 24px rgba(108, 71, 255, 0.08);
+  }
+  .blog-card:hover .blog-card-title {
+    color: #6C47FF;
+  }
 }
