@@ -1,0 +1,4 @@
+# app-ads.txt for stashly.pro
+# https://iabtechlab.com/app-ads-txt/
+# Stashly does not currently use third-party ad networks.
+# This file exists to prevent crawler 404 errors.
