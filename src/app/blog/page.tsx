@@ -26,6 +26,17 @@ export const metadata: Metadata = {
 
 const posts: Post[] = [
   {
+    slug: "raindrop-alternative",
+    href: "/blog/raindrop-alternative",
+    category: "Comparison",
+    categoryColor: "#0EA5E9",
+    title: "The best Raindrop.io alternative for mobile in 2026",
+    excerpt:
+      "Raindrop.io is polished on desktop but struggles on mobile — no Instagram/TikTok saving, iOS login bugs, broken iPad multitasking. Here's why Stashly works better for mobile-first users.",
+    readingTime: "5 min read",
+    publishedAt: "June 2026",
+  },
+  {
     slug: "personal-bookmark-manager",
     href: "/personal-bookmark-manager",
     category: "Guide",
