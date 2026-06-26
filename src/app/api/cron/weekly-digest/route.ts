@@ -149,7 +149,7 @@ async function sendExpoBatch(messages: ExpoPushMessage[]): Promise<void> {
 
 // ─── POST handler ─────────────────────────────────────────────────────────────
 
-export async function POST(req: NextRequest): Promise<NextResponse> {
+export async function GET(req: NextRequest): Promise<NextResponse> {
   // ── Auth ────────────────────────────────────────────────────────────────────
   const auth = req.headers.get('authorization') ?? '';
   if (!CRON_SECRET || auth !== `Bearer ${CRON_SECRET}`) {
