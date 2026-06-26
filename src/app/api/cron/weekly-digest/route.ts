@@ -215,5 +215,5 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   }
 }
 
-// Vercel cron only sends POST — no GET handler needed.
+// Vercel cron only sends POST — no GET handler needed...
 export const dynamic = 'force-dynamic';
