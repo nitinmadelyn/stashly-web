@@ -26,6 +26,17 @@ export const metadata: Metadata = {
 
 const posts: Post[] = [
   {
+    slug: "instapaper-alternative",
+    href: "/blog/instapaper-alternative",
+    category: "Comparison",
+    categoryColor: "#D97706",
+    title: "Instapaper vs Stashly — which is better for saving links in 2026?",
+    excerpt:
+      "Instapaper doubled its price with no new features. It saves articles beautifully — but not YouTube videos, Instagram posts, or Reddit threads. Here's an honest comparison.",
+    readingTime: "5 min read",
+    publishedAt: "June 2026",
+  },
+  {
     slug: "raindrop-alternative",
     href: "/blog/raindrop-alternative",
     category: "Comparison",
