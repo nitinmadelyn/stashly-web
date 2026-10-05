@@ -26,6 +26,28 @@ export const metadata: Metadata = {
 
 const posts: Post[] = [
   {
+    slug: "best-read-later-apps",
+    href: "/blog/best-read-later-apps",
+    category: "Guide",
+    categoryColor: "#6C47FF",
+    title: "The 7 best read-later apps in 2026 (honestly compared)",
+    excerpt:
+      "Most read-later app roundups only cover web articles. But you also save Instagram posts, TikTok videos, YouTube links, and Reddit threads. Here are 7 apps honestly compared — including what each one actually handles.",
+    readingTime: "8 min read",
+    publishedAt: "October 2026",
+  },
+  {
+    slug: "tiktok-saved-videos",
+    href: "/blog/tiktok-saved-videos",
+    category: "TikTok",
+    categoryColor: "#BE185D",
+    title: "TikTok saved 500 videos for you. Good luck finding any of them.",
+    excerpt:
+      "No search, no tags, no notes — and videos vanish when creators delete them. TikTok's Favourites tab is a black hole. Here's how to actually save TikToks you'll find later.",
+    readingTime: "4 min read",
+    publishedAt: "July 2026",
+  },
+  {
     slug: "instapaper-alternative",
     href: "/blog/instapaper-alternative",
     category: "Comparison",
